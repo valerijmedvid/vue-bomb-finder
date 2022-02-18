@@ -1,15 +1,8 @@
-<script setup></script>
+<template>
+  <div class="w-72 border-solid border-2"><h1 class="font-mono">Bomb finder</h1></div>
+  <GameField />
+</template>
 
-<template>BOMB FINDER</template>
-
-<style lang="scss">
-@import "./assets/css/base.scss";
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  font-weight: normal;
-}
-</style>
+<script setup>
+import GameField from "./components/GameField.vue"
+</script>
