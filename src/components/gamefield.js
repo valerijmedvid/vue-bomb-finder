@@ -28,7 +28,12 @@ function generateEmptyField(fieldSize) {
   for (let r = 0; r < fieldSize; r++) {
     field[r] = []
     for (let c = 0; c < fieldSize; c++) {
-      field[r].push(0)
+      field[r].push({
+        isBomb: false,
+        value: 0,
+        valueShown: false,
+        flagShown: false,
+      })
     }
   }
 
@@ -58,19 +63,14 @@ export function generateField(fieldSize, bombCount) {
   // Generate values for bombs
   bombCoordinate.forEach(bomb => {
     getCoordinatesAroundBomb(bomb[0], bomb[1], fieldSize).forEach(coor => {
-      field[coor[0]][coor[1]] += 1
+      field[coor[0]][coor[1]]["value"] += 1
     })
   })
 
   // Add bombs
   bombCoordinate.forEach(bomb => {
-    field[bomb[0]][bomb[1]] = "x"
+    field[bomb[0]][bomb[1]]["isBomb"] = true
   })
 
-  let i = 0
-  field.forEach(x => {
-    console.log(i, x.join(","))
-    i++
-  })
   return field
 }
