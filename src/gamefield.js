@@ -33,6 +33,10 @@ function generateEmptyField(fieldSize) {
         value: 0,
         valueShown: false,
         flagShown: false,
+        coordinates: {
+          row: r,
+          column: c,
+        },
       })
     }
   }
