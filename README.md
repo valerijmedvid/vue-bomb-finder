@@ -1,7 +1,11 @@
-# vue-bomb-finder
+# Bomb finder
+![Deploy](https://github.com/valerijmedvid/vue-bomb-finder/workflows/Deploy/badge.svg)
 
-This template should help get you started developing with Vue 3 in Vite.
 
+You can play on [mines.vmedvid.cz](https://mines.vmedvid.cz/)
+
+
+---
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
