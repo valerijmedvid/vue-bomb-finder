@@ -36,7 +36,7 @@ const makeClick = () => {
   if (props.bomb.isBomb) {
     looseGame.value = true
     shownField.value = true
-    alert("Loose Game!!!")
+    alert("!!! GameOver !!!")
   } else {
     shownField.value = true
 
