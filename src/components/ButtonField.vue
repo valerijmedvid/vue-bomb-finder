@@ -1,17 +1,22 @@
 <template>
   <button
-    @click="makeClick"
+    @click.left="makeLeftClick"
+    @click.right.prevent="makeRightClick"
     class="w-7 border border-slate-500 rounded"
     :class="[
       {
-        ' bg-red-200 ': looseGame,
+        ' bg-red-200 ': props.bomb.isBomb,
 
-        ' bg-gray-300 ': !shownField && !props.bomb.valueShown,
+        ' bg-gray-300 ': !props.bomb.valueShown,
       },
     ]"
   >
-    <template v-if="props.bomb.isBomb"> 💣 </template>
-    <template v-else-if="props.bomb.value"> {{ bomb.value }} </template>
+    <template v-if="props.bomb.valueShown">
+      <template v-if="props.bomb.isBomb"> 💣 </template>
+      <template v-else-if="props.bomb.value"> {{ bomb.value }} </template>
+      <template v-else> &nbsp; </template>
+    </template>
+    <template v-else-if="flag"> 🚩 </template>
     <template v-else> &nbsp; </template>
   </button>
 </template>
@@ -20,31 +25,27 @@
 import { ref, watch } from "vue"
 
 let props = defineProps(["bomb"])
-let emit = defineEmits(["searchOther"])
+let emit = defineEmits(["showFields", "showBomb"])
 
-let looseGame = ref(false)
-let shownField = ref(false)
+let flag = ref(props.bomb.flagShown)
 
 watch(
   () => props.bomb.valueShown,
   () => {
-    emit("searchOther", props.bomb)
+    emit("showFields", props.bomb)
   }
 )
 
-const makeClick = () => {
+const makeLeftClick = () => {
   if (props.bomb.isBomb) {
-    looseGame.value = true
-    shownField.value = true
-    alert("!!! GameOver !!!")
+    emit("showBomb")
   } else {
-    shownField.value = true
-
-    if (props.bomb.value == 0) {
-      emit("searchOther", props.bomb)
-    }
+    emit("showFields", props.bomb)
   }
 }
+const makeRightClick = () => {
+  console.log("test")
+  flag.value = !flag.value
+  // flag.value = true
+}
 </script>
-
-<style lang="scss" scoped></style>
